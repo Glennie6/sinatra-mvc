@@ -3,7 +3,7 @@ get '/:birthdate' do
 end
 
 get '/message/:birth_path_num' do
-  Person.birth_path_num = params[:birth_path_num].to_i
+  birth_path_num = Person.params[:birth_path_num].to_i
   @message = Person.get_message(birth_path_num)
   erb :index
 end
@@ -13,7 +13,7 @@ get '/' do
 end
 
 post '/' do
-  birthdate = params[:birthdate].gsub("-", "")
+  birthdate = Person.params[:birthdate].gsub("-", "")
   if Person.valid_birthdate(birthdate)
     birth_path_num = Person.get_birth_path_num(birthdate)
     redirect "/message/#{birth_path_num}"

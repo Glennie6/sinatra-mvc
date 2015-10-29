@@ -39,6 +39,13 @@ message = "uh oh! Your birth path number is not 1-9!"
 end
 end
 
+def self.setup_index_view
+birthdate = self.params[:birthdate]
+birth_path_num = self.get_birth_path_num(birthdate)
+@message = self.get_message(birth_path_num)
+erb :index
+end
+
 def self.valid_birthdate(input)
     if(input.length ==8 && !input.match(/^[0-9]+[0-9]$/).nil?)
        true
