@@ -1,3 +1,4 @@
+#require 'openssl'
 class Person < ActiveRecord::Base
  
 def self.get_birth_path_num(birthdate)
@@ -21,7 +22,7 @@ when 1
 when 2
     message = "Your numerology number is #{birth_path_num}. \nThis is the mediator and peace-lover. The number two indicates the desire for harmony. It is a gentle, considerate, and sensitive vibration. Ruled by the Moon."
 when 3
-    message ="Your numerology number is #{birth_path_num}. \nNumber Three is a sociable, friendly, and outgoing vibration. Kind, positive, and optimistic, they enjoy life and have a good sense of humor. Ruled by Jupiter."
+    message = "Your numerology number is #{birth_path_num}. \nNumber Three is a sociable, friendly, and outgoing vibration. Kind, positive, and optimistic, they enjoy life and have a good sense of humor. Ruled by Jupiter."
 when 4
     message = "Your numerology number is #{birth_path_num}. \nThis is the worker. Practical, with a love of detail, Fours are trustworthy, hard-working, and helpful. Ruled by Uranus."
 when 5
@@ -33,18 +34,12 @@ when 7
 when 8
     message = "Your numerology number is #{birth_path_num}. \nThis is the manager. Number Eight is a strong, successful, and material vibration. Ruled by Saturn."
 when 9
-    message ="Your numerology number is #{birth_path_num}. \nThis is the teacher. Number Nine is a tolerant, somewhat impractical, and sympathetic vibration. Ruled by Mars. "
+    message = "Your numerology number is #{birth_path_num}. \nThis is the teacher. Number Nine is a tolerant, somewhat impractical, and sympathetic vibration. Ruled by Mars. "
 else
 message = "uh oh! Your birth path number is not 1-9!"
 end
 end
 
-def self.setup_index_view
-birthdate = self.params[:birthdate]
-birth_path_num = self.get_birth_path_num(birthdate)
-@message = self.get_message(birth_path_num)
-erb :index
-end
 
 def self.valid_birthdate(input)
     if(input.length ==8 && !input.match(/^[0-9]+[0-9]$/).nil?)
