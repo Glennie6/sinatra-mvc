@@ -25,6 +25,12 @@ get '/people/:id/edit' do
   erb :"/people/edit"
 end
 
+delete '/people/:id' do
+    @person = Person.find(params[:id])
+    erb :"/people/delete"
+    redirect "/people"
+end
+
 put '/people/:id' do
   person = Person.find(params[:id])
   person.first_name = params[:first_name]
