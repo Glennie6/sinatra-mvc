@@ -1,4 +1,4 @@
-#require 'openssl'
+validates_presence-of :birthdate, :first_name, :last_name
 class Person < ActiveRecord::Base
  
 def self.get_birth_path_num(birthdate)
